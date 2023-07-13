@@ -34,17 +34,17 @@ const Home = () => {
 
   const veiwHandler = (data) => {
     dispatch(addUser(data))
-    navigate(`/veiw/${data._id}`)
+    navigate(`/page3/${data._id}`)
   }
 
   const addHandler = () => {
-    navigate('/profile')
+    navigate('/page2')
   }
 
   const editHandler = (data) => {
     dispatch(editUser(data))
     localStorage.setItem("user Info", JSON.stringify(data))
-    navigate("/profile")
+    navigate("/page2")
   }
 
   const deleteUser = async (userId) => {
