@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
 import { editUser, clearEditUser } from '../Redux/editUserSlice'
+import { toast } from 'react-hot-toast'
 
 const Profile = () => {
   const editUserData = useSelector((state) => state.edit)
@@ -29,29 +30,33 @@ const Profile = () => {
         email: email,
         phone: phone
       }
-
+  
+      
+      if (!name || !email || !phone) {
+        toast.error('Please enter all fields')
+        return;
+      }
+  
       if (editUserData) {
-        
         await axios.put(
           `https://dark-teal-goldfish-wear.cyclic.app/users/${editUserData._id}`,
           userData
         )
-        console.log('User updated successfully')
+        toast.success('User updated successfully')
       } else {
-        
         await axios.post(
           'https://dark-teal-goldfish-wear.cyclic.app/users',
           userData
         )
-        console.log('User created successfully')
+        toast.success('User created successfully')
       }
-
-      
+  
       navigate('/')
     } catch (error) {
       console.error(error)
     }
   }
+  
   const backHandler = () => {
     navigate('/')
     dispatch(clearEditUser())
