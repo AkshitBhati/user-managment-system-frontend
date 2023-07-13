@@ -27,8 +27,8 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/veiw/:id' element={<Veiw />} />
-        <Route path='/profile' element={<Profile   />} />
+        <Route path='/page3/:id' element={<Veiw />} />
+        <Route path='/page2' element={<Profile   />} />
       </Routes>
     </Router>
     </>
